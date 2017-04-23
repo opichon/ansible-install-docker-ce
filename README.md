@@ -1,6 +1,6 @@
-# Ansible Install Docker CE Role
+# Ansible Role: Install Docker CE
 
-An Ansible role to install Docker CE on Ubuntu.
+An Ansible role to install Docker CE on Ubuntu 14.04 and above.
 
 ## Rationale for this role
 
@@ -14,7 +14,11 @@ It only applies to Ubuntu Trusty, Xenial or Yakketty.
 
 ## Role variables
 
-* `docker_key_server`: the url of the Docker GPG key
+Ansible variables are listed below with their default values.
+
+```
+docker_key_server: https://download.docker.com/linux/ubuntu/gpg
+```
 
 ## Installation
 
@@ -22,12 +26,15 @@ It only applies to Ubuntu Trusty, Xenial or Yakketty.
 ansible-galaxy install opichon.install-docker-ce
 ```
 
-## Usage
-
-Add the role to your playbook.
+## Example playbook
 
 ```
 ---
-- name: Install Docker CE
-  role: opichon.install-docker-ce
+- hosts: webservers
+  roles:
+  	- opichon.install-docker-ce
 ```
+## License
+
+MIT
+
