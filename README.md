@@ -20,12 +20,6 @@ Ansible variables are listed below with their default values.
 docker_key_server: https://download.docker.com/linux/ubuntu/gpg
 ```
 
-## Installation
-
-```
-ansible-galaxy install opichon.install-docker-ce
-```
-
 ## Example playbook
 
 ```
@@ -34,6 +28,7 @@ ansible-galaxy install opichon.install-docker-ce
   roles:
   	- opichon.install-docker-ce
 ```
+
 ## License
 
 MIT
