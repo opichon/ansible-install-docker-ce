@@ -22,7 +22,8 @@
   when: ansible_distribution_version == 14.04
 
 - name: Add docker's official GPG key to apt
-  apt_key: keyserver="{{ docker_keyserver }}"
+  apt_key:
+    keyserver: "{{ docker_keyserver }}"
     id: "{{ docker_key_id }}"
     state: present
 
