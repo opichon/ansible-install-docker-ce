@@ -10,7 +10,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - yaketty
+        - yakkety
         - trusty
         - xenial
 
