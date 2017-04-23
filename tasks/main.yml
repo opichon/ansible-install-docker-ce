@@ -23,7 +23,7 @@
 
 - name: Add docker's official GPG key to apt
   apt_key:
-    keyserver: "{{ docker_keyserver }}"
+    keyserver: "{{ docker_key_server }}"
     id: "{{ docker_key_id }}"
     state: present
 
