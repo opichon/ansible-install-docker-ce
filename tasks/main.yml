@@ -1,0 +1,38 @@
+---
+- name: Install required packages
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Install additional pacakges for Ubuntu 14.04
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - "linux-image-extra-{{ ansible_kernel }}"
+    - "linux-image-extra-virtual"
+  when: ansible_distribution_version == 14.04
+
+- name: Add docker's official GPG key to apt
+  apt_key: keyserver="{{ docker_keyserver }}"
+    id: "{{ docker_key_id }}"
+    state: present
+
+- name: Add Docker's apt repository
+  apt-repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install docker CE
+  apt:
+    pkg: "docker-ce"
+    state: latest
+    update_cache: yes
