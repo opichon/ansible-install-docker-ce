@@ -12,6 +12,7 @@
     - software-properties-common
 
 - name: Install additional pacakges for Ubuntu 14.04
+  become: yes
   apt:
     pkg: "{{ item }}"
     state: latest
@@ -22,16 +23,19 @@
   when: ansible_distribution_version == 14.04
 
 - name: Add docker's official GPG key to apt
+  become: yes
   apt_key:
     url: "{{ docker_key_server }}"
     state: present
 
 - name: Add Docker's apt repository
+  become: yes
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
 
 - name: Install docker CE
+  become: yes
   apt:
     pkg: "docker-ce"
     state: latest
