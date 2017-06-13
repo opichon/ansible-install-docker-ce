@@ -11,7 +11,7 @@
     - curl
     - software-properties-common
 
-- name: Install additional pacakges for Ubuntu 14.04
+- name: Install additional packages for Ubuntu 14.04
   become: yes
   apt:
     pkg: "{{ item }}"
