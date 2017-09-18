@@ -22,7 +22,7 @@
     - "linux-image-extra-virtual"
   when: ansible_distribution_version == 14.04
 
-- name: Add docker's official GPG key to apt- name: Add docker's GPG key
+- name: Add docker's official GPG key to apt
   become: true
   apt_key:
     url: "{{ docker_key_url }}"
