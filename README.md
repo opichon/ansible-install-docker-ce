@@ -17,7 +17,10 @@ It only applies to Ubuntu Trusty, Xenial or Yakketty.
 Ansible variables are listed below with their default values.
 
 ```
-docker_key_server: https://download.docker.com/linux/ubuntu/gpg
+docker_key_url: https://download.docker.com/linux/ubuntu/gpg
+docker_version: 17.06.2~ce-0~ubuntu
+docker-users:
+  - "{{ ansible_ssh_user }}"
 ```
 
 ## Example playbook
