@@ -9,6 +9,7 @@
     - apt-transport-https
     - ca-certificates
     - curl
+    - python-pip
     - software-properties-common
 
 - name: Install additional packages for Ubuntu 14.04
