@@ -12,7 +12,7 @@
     - software-properties-common
 
 - name: Install additional packages for Ubuntu 14.04
-  become: yes
+  become: true
   apt:
     pkg: "{{ item }}"
     state: latest
@@ -22,20 +22,20 @@
     - "linux-image-extra-virtual"
   when: ansible_distribution_version == 14.04
 
-- name: Add docker's official GPG key to apt
-  become: yes
+- name: Add docker's official GPG key to apt- name: Add docker's GPG key
+  become: true
   apt_key:
-    url: "{{ docker_key_server }}"
+    url: "{{ docker_key_url }}"
     state: present
 
 - name: Add Docker's apt repository
-  become: yes
+  become: true
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
 
 - name: Install docker CE
-  become: yes
+  become: true
   apt:
     pkg: "docker-ce"
     state: latest
@@ -59,5 +59,6 @@
 - name: Add user to docker group
   become: true
   user:
-    name: "{{ ansible_ssh_user }}"
+    name: "{{ item }}"
     groups: "docker"
+  with_items: "{{ docker_users }}"
