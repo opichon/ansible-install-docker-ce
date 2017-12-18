@@ -48,6 +48,15 @@
     name: pip
     state: latest
 
+- name: Unnstall python docker
+  become: true
+  pip:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker-py
+    - docker
+
 - name: Install python docker
   become: true
   pip:
@@ -55,7 +64,6 @@
     state: latest
   with_items:
     - docker
-    - docker-py
 
 - name: Add user to docker group
   become: true
