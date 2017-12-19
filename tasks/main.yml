@@ -48,7 +48,7 @@
     name: pip
     state: latest
 
-- name: Unnstall python docker
+- name: Uninstall python docker
   become: true
   pip:
     name: "{{ item }}"
