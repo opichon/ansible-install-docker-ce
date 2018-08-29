@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: unitedasian.install-docker-ce
+  role_name: install-docker-ce
   author: Olivier Pichon <op@united-asian.com>
   description: Install Docker CE
   company: United Asian Management Limited
