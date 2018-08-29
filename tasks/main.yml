@@ -71,3 +71,11 @@
     name: "{{ item }}"
     groups: "docker"
   with_items: "{{ docker_users }}"
+
+- name: Install latest version of docker-compose
+  shell: "curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
+  when: docker_compose
+
+- name: Make docker-compose executable
+  shell: "chmod +x /usr/local/bin/docker-compose"
+  when: docker_compose
