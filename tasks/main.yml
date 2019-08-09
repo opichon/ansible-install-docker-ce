@@ -9,19 +9,8 @@
     - apt-transport-https
     - ca-certificates
     - curl
-    - python-pip
+    - gnupg-agent
     - software-properties-common
-
-- name: Install additional packages for Ubuntu 14.04
-  become: true
-  apt:
-    pkg: "{{ item }}"
-    state: latest
-    update_cache: yes
-  with_items:
-    - "linux-image-extra-{{ ansible_kernel }}"
-    - "linux-image-extra-virtual"
-  when: ansible_distribution_version == 14.04
 
 - name: Add docker's official GPG key to apt
   become: true
@@ -38,32 +27,13 @@
 - name: Install docker CE
   become: true
   apt:
-    pkg: "docker-ce"
+    pkg: "{{ item }}"
     state: latest
     update_cache: yes
-
-- name: Upgrade pip
-  become: true
-  pip:
-    name: pip
-    state: latest
-
-- name: Uninstall python docker
-  become: true
-  pip:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - docker-py
-    - docker
-
-- name: Install python docker
-  become: true
-  pip:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - docker
+  wit_items:
+    - "docker-ce"
+    - "docker-ce-cli"
+    - "containerd.io"
 
 - name: Add user to docker group
   become: true
@@ -71,11 +41,3 @@
     name: "{{ item }}"
     groups: "docker"
   with_items: "{{ docker_users }}"
-
-- name: Install latest version of docker-compose
-  shell: "curl -L https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
-  when: docker_compose
-
-- name: Make docker-compose executable
-  shell: "chmod +x /usr/local/bin/docker-compose"
-  when: docker_compose

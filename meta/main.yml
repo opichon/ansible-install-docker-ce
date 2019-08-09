@@ -1,6 +1,6 @@
 galaxy_info:
-  role_name: install-docker-ce
-  author: Olivier Pichon <op@united-asian.com>
+  role_name: install_docker_ce
+  author: Olivier Pichon <op@dzango.com>
   description: Install Docker CE
   company: United Asian Management Limited
 
@@ -11,7 +11,10 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - all
+        - 19.04
+        - 18.10
+        - 18.04
+        - 16.04
 
   galaxy_tags:
     - docker

@@ -18,7 +18,6 @@ Ansible variables are listed below with their default values.
 
 ```
 docker_key_url: https://download.docker.com/linux/ubuntu/gpg
-docker_version: 17.06.2~ce-0~ubuntu
 docker-users:
   - "{{ ansible_ssh_user }}"
 ```
@@ -29,7 +28,7 @@ docker-users:
 ---
 - hosts: webservers
   roles:
-  	- opichon.install-docker-ce
+  	- dzangolab.install_docker_ce
 ```
 
 ## License
